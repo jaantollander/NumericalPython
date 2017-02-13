@@ -3,7 +3,7 @@ Numerical Routines in Python
 This guide shows examples on how to
 
 - Write efficient numerical routines in ``Python`` using ``Numba`` and ``Numpy``
-- Test numerical code with ``Pytest``and ``Hypothesis``
+- Test numerical code with ``Pytest`` and ``Hypothesis``
 - Write clean docstring with `Google style docstrings`_
 - Compile API documentation from docstrings with ``Sphinx``
 
