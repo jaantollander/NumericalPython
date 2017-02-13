@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Non-Uniform Fast Fourier Transform &mdash; Numerical Routines in Python 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Numerical Routines in Python 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Numerical Routines in Python" href="readme.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Numerical Routines in Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Numerical Routines in Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Non-Uniform Fast Fourier Transform</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Numerical Routines in Python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Non-Uniform Fast Fourier Transform</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/module.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-package.module">
+<span id="non-uniform-fast-fourier-transform"></span><h1>Non-Uniform Fast Fourier Transform<a class="headerlink" href="#module-package.module" title="Permalink to this headline">¶</a></h1>
+<p>Non-Uniform Fourier Transform</p>
+<div class="math">
+\[Y_k^\pm = \sum_{j=1}^N y(x_j) e^{\pm i k x_j}\]</div>
+<p>Fast-Fourier Transform (FFT)</p>
+<div class="math">
+\[Y_k^\pm = \sum_{n=0}^{N-1} y_n e^{\pm i k n / N}\]</div>
+<p>which requires that</p>
+<ul class="simple">
+<li><span class="math">\(y_n\)</span> are the samples of function <span class="math">\(y_n = y(x_n)\)</span></li>
+<li><span class="math">\(x_n = x_0 + n \Delta x\)</span> are regular grid points</li>
+</ul>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><a class="reference external" href="http://adereth.github.io/blog/2013/11/29/colorful-equations/">http://adereth.github.io/blog/2013/11/29/colorful-equations/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.cims.nyu.edu/cmcl/nufft/nufft.html">http://www.cims.nyu.edu/cmcl/nufft/nufft.html</a></td></tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="package.module.nufftfreqs">
+<code class="descclassname">package.module.</code><code class="descname">nufftfreqs</code><a class="reference internal" href="_modules/package/module.html#nufftfreqs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.nufftfreqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the frequency range used in nufft for M frequency bins</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>M</strong> (<em>int</em>) &#8211; </li>
+<li><strong>df</strong> (<em>float</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="package.module.nudft">
+<code class="descclassname">package.module.</code><code class="descname">nudft</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>M</em>, <em>df=1.0</em>, <em>iflag=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/module.html#nudft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.nudft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-Uniform Direct Fourier Transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+<li><strong>M</strong> &#8211; </li>
+<li><strong>df</strong> &#8211; </li>
+<li><strong>iflag</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="package.module.build_grid_fast">
+<code class="descclassname">package.module.</code><code class="descname">build_grid_fast</code><a class="reference internal" href="_modules/package/module.html#build_grid_fast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.build_grid_fast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build grid fast</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>c</strong> &#8211; </li>
+<li><strong>tau</strong> &#8211; </li>
+<li><strong>Msp</strong> &#8211; </li>
+<li><strong>ftau</strong> &#8211; </li>
+<li><strong>E3</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="package.module.nufft_numba_fast">
+<code class="descclassname">package.module.</code><code class="descname">nufft_numba_fast</code><span class="sig-paren">(</span><em>x</em>, <em>c</em>, <em>M</em>, <em>df=1.0</em>, <em>eps=1e-15</em>, <em>iflag=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/module.html#nufft_numba_fast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.nufft_numba_fast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fast Non-Uniform Fourier Transform with Numba</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>c</strong> &#8211; </li>
+<li><strong>M</strong> &#8211; </li>
+<li><strong>df</strong> &#8211; </li>
+<li><strong>eps</strong> &#8211; </li>
+<li><strong>iflag</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="readme.html" class="btn btn-neutral" title="Numerical Routines in Python" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Jaan Tollander de Balsch.
+      Last updated on 2017-02-13.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
