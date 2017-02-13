@@ -8,8 +8,11 @@ dependencies:
     - numpy
     - numba
     - jupyter
+    - line_profiler
+    - memory_profiler
     pip:
       - sphinx
       - sphinx-rtd-theme
+      - ghp-import
       - pytest
       - hypothesis

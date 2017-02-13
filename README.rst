@@ -9,6 +9,7 @@ This guide shows examples on how to
 
 .. _Google style docstrings: http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 
+
 Tests
 -----
 Test uses pytest with hypothesis. From commandline test can be using
