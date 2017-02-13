@@ -7,7 +7,7 @@ This guide shows examples on how to
 - Write clean docstring with `Google style docstrings`_
 - Compile API documentation from docstrings with ``Sphinx``
 
-.. Google style docstrings: http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+.. _Google style docstrings: http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 
 Tests
 -----
