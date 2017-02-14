@@ -1,5 +1,8 @@
-Non-Uniform Fast Fourier Transform
-==================================
+Numerical Routines
+==================
 
-.. automodule:: package.module
-   :members: nufftfreqs, nudft, build_grid_fast, nufft_numba_fast
+.. automodule:: package
+   :members:
+
+.. automodule:: package.nogil
+   :members:

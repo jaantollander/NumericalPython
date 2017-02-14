@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Non-Uniform Fast Fourier Transform &mdash; Numerical Routines in Python 0.1 documentation</title>
+  <title>Numerical Routines &mdash; Numerical Routines in Python 0.1 documentation</title>
   
 
   
@@ -85,7 +85,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Numerical Routines in Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Non-Uniform Fast Fourier Transform</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Numerical Routines</a></li>
 </ul>
 
             
@@ -116,7 +116,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Non-Uniform Fast Fourier Transform</li>
+    <li>Numerical Routines</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -130,83 +130,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-package.module">
-<span id="non-uniform-fast-fourier-transform"></span><h1>Non-Uniform Fast Fourier Transform<a class="headerlink" href="#module-package.module" title="Permalink to this headline">¶</a></h1>
-<p>Non-Uniform Fourier Transform</p>
-<div class="math">
-\[Y_k^\pm = \sum_{j=1}^N y(x_j) e^{\pm i k x_j}\]</div>
-<p>Fast-Fourier Transform (FFT)</p>
-<div class="math">
-\[Y_k^\pm = \sum_{n=0}^{N-1} y_n e^{\pm i k n / N}\]</div>
-<p>which requires that</p>
-<ul class="simple">
-<li><span class="math">\(y_n\)</span> are the samples of function <span class="math">\(y_n = y(x_n)\)</span></li>
-<li><span class="math">\(x_n = x_0 + n \Delta x\)</span> are regular grid points</li>
-</ul>
+  <div class="section" id="module-package">
+<span id="numerical-routines"></span><h1>Numerical Routines<a class="headerlink" href="#module-package" title="Permalink to this headline">¶</a></h1>
+<p>Numerical routines written using <code class="docutils literal"><span class="pre">Numpy</span></code> and <code class="docutils literal"><span class="pre">Numba</span></code>.</p>
+<p>These examples are effected by my own experiences using numba and numpy as well
+as examples in Numba repository <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
 <p class="rubric">References</p>
-<table class="docutils footnote" frame="void" id="id1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td><a class="reference external" href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/</a></td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[2]</td><td><a class="reference external" href="http://adereth.github.io/blog/2013/11/29/colorful-equations/">http://adereth.github.io/blog/2013/11/29/colorful-equations/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://github.com/numba/numba/tree/master/examples">https://github.com/numba/numba/tree/master/examples</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.cims.nyu.edu/cmcl/nufft/nufft.html">http://www.cims.nyu.edu/cmcl/nufft/nufft.html</a></td></tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="package.module.nufftfreqs">
-<code class="descclassname">package.module.</code><code class="descname">nufftfreqs</code><a class="reference internal" href="_modules/package/module.html#nufftfreqs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.nufftfreqs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute the frequency range used in nufft for M frequency bins</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>M</strong> (<em>int</em>) &#8211; </li>
-<li><strong>df</strong> (<em>float</em>) &#8211; </li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<span class="target" id="module-package.nogil"></span><p>Example of multithreaded routine using <code class="docutils literal"><span class="pre">nogil=True</span></code>.</p>
+<p>Test function in these examples is</p>
+<div class="math">
+\[f(a, b) = \exp(2.1 a + 3.2 b)\]</div>
 <dl class="function">
-<dt id="package.module.nudft">
-<code class="descclassname">package.module.</code><code class="descname">nudft</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>M</em>, <em>df=1.0</em>, <em>iflag=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/module.html#nudft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.nudft" title="Permalink to this definition">¶</a></dt>
-<dd><p>Non-Uniform Direct Fourier Transform</p>
+<dt id="package.nogil.func_np">
+<code class="descclassname">package.nogil.</code><code class="descname">func_np</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/nogil.html#func_np"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.func_np" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control function using Numpy.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>y</strong> &#8211; </li>
-<li><strong>M</strong> &#8211; </li>
-<li><strong>df</strong> &#8211; </li>
-<li><strong>iflag</strong> &#8211; </li>
+<li><strong>a</strong> (<em>float|np.ndarray</em>) &#8211; <span class="math">\(a\)</span></li>
+<li><strong>b</strong> (<em>float|np.ndarray</em>) &#8211; <span class="math">\(b\)</span></li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><span class="math">\(f(a, b)\)</span></p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float|np.ndarray</p>
 </td>
 </tr>
 </tbody>
@@ -214,27 +171,19 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.module.build_grid_fast">
-<code class="descclassname">package.module.</code><code class="descname">build_grid_fast</code><a class="reference internal" href="_modules/package/module.html#build_grid_fast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.build_grid_fast" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build grid fast</p>
+<dt id="package.nogil.inner_func_nb">
+<code class="descclassname">package.nogil.</code><code class="descname">inner_func_nb</code><a class="reference internal" href="_modules/package/nogil.html#inner_func_nb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.inner_func_nb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function under test.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>c</strong> &#8211; </li>
-<li><strong>tau</strong> &#8211; </li>
-<li><strong>Msp</strong> &#8211; </li>
-<li><strong>ftau</strong> &#8211; </li>
-<li><strong>E3</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>result</strong> (<em>np.ndarray</em>) &#8211; Result array where the results from function <span class="math">\(f(a, b)\)</span> are
+stored.</li>
+<li><strong>a</strong> (<em>np.ndarray</em>) &#8211; <span class="math">\(a\)</span></li>
+<li><strong>b</strong> (<em>np.ndarray</em>) &#8211; <span class="math">\(b\)</span></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
 </td>
 </tr>
 </tbody>
@@ -242,28 +191,43 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="package.module.nufft_numba_fast">
-<code class="descclassname">package.module.</code><code class="descname">nufft_numba_fast</code><span class="sig-paren">(</span><em>x</em>, <em>c</em>, <em>M</em>, <em>df=1.0</em>, <em>eps=1e-15</em>, <em>iflag=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/module.html#nufft_numba_fast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.module.nufft_numba_fast" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fast Non-Uniform Fourier Transform with Numba</p>
+<dt id="package.nogil.make_multithread">
+<code class="descclassname">package.nogil.</code><code class="descname">make_multithread</code><span class="sig-paren">(</span><em>inner_func</em>, <em>numthreads</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/nogil.html#make_multithread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.make_multithread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the given function inside <em>numthreads</em> threads, splitting its
+arguments into equal-sized chunks.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>c</strong> &#8211; </li>
-<li><strong>M</strong> &#8211; </li>
-<li><strong>df</strong> &#8211; </li>
-<li><strong>eps</strong> &#8211; </li>
-<li><strong>iflag</strong> &#8211; </li>
+<li><strong>inner_func</strong> &#8211; </li>
+<li><strong>numthreads</strong> (<em>int</em>) &#8211; </li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="package.nogil.make_singlethread">
+<code class="descclassname">package.nogil.</code><code class="descname">make_singlethread</code><span class="sig-paren">(</span><em>inner_func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/nogil.html#make_singlethread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.make_singlethread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the given function inside a single thread.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>inner_func</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
 </tr>
 </tbody>
 </table>
@@ -289,7 +253,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017,Jaan Tollander de Balsch.
-      Last updated on 2017-02-13.
+      Last updated on 2017-02-14.
 
     </p>
   </div>
