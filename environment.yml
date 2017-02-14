@@ -26,4 +26,3 @@ dependencies:
       - ghp-import
       - pytest
       - hypothesis
-      - git+https://github.com/dfm/python-nufft
