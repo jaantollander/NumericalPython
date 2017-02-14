@@ -1,45 +1,20 @@
 """Test for numerical routines using pytest and hypothesis.
 
 Attributes:
-    NTHREADS:
+    NTHREADS (int):
         Number of threads to use.
 
-    SIZE:
+    SIZE (int):
         Size of the test arrays.
 """
-from timeit import repeat
 import numpy as np
-from hypothesis import given
 
 from package.nogil import make_multithread, inner_func_nb, func_np
 from package.nogil import make_singlethread
+from package.tests.util import timefunc
 
 NTHREADS = 4
-SIZE = 1e6
-
-
-def timefunc(correct, s, func, *args, **kwargs):
-    """Benchmark *func* and print out its runtime.
-
-    Args:
-        correct:
-        s:
-        func:
-        *args:
-        **kwargs:
-
-    Returns:
-        object:
-    """
-    print(s.ljust(20), end=" ")
-    # Make sure the function is compiled before we start the benchmark
-    res = func(*args, **kwargs)
-    if correct is not None:
-        assert np.allclose(res, correct), (res, correct)
-    # time it
-    print('{:>5.0f} ms'.format(min(repeat(lambda: func(*args, **kwargs),
-                                          number=5, repeat=2)) * 1000))
-    return res
+SIZE = int(1e6)
 
 
 def test_nogil():

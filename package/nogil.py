@@ -19,8 +19,10 @@ def func_np(a, b):
     r"""Control function using Numpy.
 
     Args:
-        a (float|np.ndarray): :math:`a`
-        b (float|np.ndarray): :math:`b`
+        a (float|np.ndarray):
+            Real number(s) :math:`a`
+        b (float|np.ndarray):
+            Real number(s) :math:`b`
 
     Returns:
         float|np.ndarray: :math:`f(a, b)`
@@ -36,21 +38,25 @@ def inner_func_nb(result, a, b):
         result (np.ndarray):
             Result array where the results from function :math:`f(a, b)` are
             stored.
-        a (np.ndarray): :math:`a`
-        b (np.ndarray): :math:`b`
+        a (np.ndarray):
+            Real numbers :math:`a`
+        b (np.ndarray):
+            Real numbers :math:`b`
     """
     for i in range(len(result)):
         result[i] = math.exp(2.1 * a[i] + 3.2 * b[i])
 
 
 def make_singlethread(inner_func):
-    """Run the given function inside a single thread.
+    """
+    Run the given function inside a single thread.
 
     Args:
         inner_func:
+            Function to be run.
 
     Returns:
-        object:
+        object: Wrapped function
     """
 
     def func(*args):
@@ -69,10 +75,13 @@ def make_multithread(inner_func, numthreads):
 
     Args:
         inner_func:
+            Function to be run.
+
         numthreads (int):
+            Number of threads.
 
     Returns:
-        object:
+        object: Wrapped function
     """
 
     def func_mt(*args):
