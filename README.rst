@@ -10,6 +10,9 @@ This guide shows examples on how to
 .. _Google style docstrings: http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 
 
+Check out the `documentation <https://jaantollander.github.io/NumericalPython/>`_
+
+
 Installation
 ------------
 If you do not have anaconda or miniconda installed you can install it using

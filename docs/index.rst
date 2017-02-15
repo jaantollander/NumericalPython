@@ -1,3 +1,5 @@
+Numerical Routines in Python using Numpy and Numba
+==================================================
 
 .. toctree::
    :caption: Basics
