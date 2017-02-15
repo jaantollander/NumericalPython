@@ -1,6 +1,8 @@
+"""Function for testing, profiling and benchmarking numba routines."""
 import math
 import sys
 from timeit import repeat
+import numpy as np
 
 
 def format_time(timespan, precision=3):
@@ -50,11 +52,11 @@ def format_time(timespan, precision=3):
     return u"{:.1f} {}".format(timespan * scaling[order], units[order])
 
 
-def timefunc(msg, func, *args, **kwargs):
+def timefunc(func, msg, *args, **kwargs):
     """Benchmark *func* and print out its runtime.
 
     Args:
-        msg:
+        msg (str):
         func:
         *args:
         **kwargs:
@@ -71,3 +73,37 @@ def timefunc(msg, func, *args, **kwargs):
     timespan = min(repeat(lambda: func(*args, **kwargs), number=5, repeat=2))
     print(format_time(timespan))
     return res
+
+
+def benchmark(func, arg_gen, num=500, seed=None):
+    """Benchmark a function
+
+    Args:
+        func:
+        arg_gen:
+        num:
+        seed:
+
+    Returns:
+        object:
+
+    Todo:
+        - float32, float64
+        - Value range
+        - generating argument to functions
+    """
+    np.random.seed(seed)
+
+    sizes = np.logspace(1.0, 6.0, num, dtype=np.int64)
+    times = np.zeros_like(sizes, dtype=np.float64)
+
+    # Make sure the function is compiled before we start the benchmark
+    args = arg_gen(10)
+    res = func(*args)
+
+    for i, size in enumerate(sizes):
+        print(i)
+        args = arg_gen(size)
+        times[i] = min(repeat(lambda: func(*args), number=5, repeat=2))
+
+    return sizes, times

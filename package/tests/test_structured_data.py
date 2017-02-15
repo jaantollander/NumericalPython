@@ -9,7 +9,7 @@ import numpy as np
 
 from package.structured_data import Particles, create_particles_numpy, \
     create_particles_jitclass, potential, reset_potential
-from package.tests.util import timefunc
+from package.utils import timefunc
 
 SIZE = int(1000)
 
@@ -43,5 +43,5 @@ def test_structured_data():
 
     # Timeit
     print()
-    timefunc('Custom numpy.dtype', potential, particles)
-    timefunc('Jitclass', potential, particles2)
+    timefunc(potential, 'Custom numpy.dtype', particles)
+    timefunc(potential, 'Jitclass', particles2)

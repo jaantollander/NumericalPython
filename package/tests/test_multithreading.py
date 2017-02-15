@@ -11,7 +11,7 @@ import numpy as np
 
 from package.multithreading import make_multithread, inner_func_nb, func_np
 from package.multithreading import make_singlethread
-from package.tests.util import timefunc
+from package.utils import timefunc
 
 NTHREADS = 4
 SIZE = int(1e6)
@@ -25,9 +25,9 @@ def test_nogil():
     b = np.random.rand(SIZE)
 
     print()
-    correct = timefunc("numpy (1 thread)", func_np, a, b)
-    res1 = timefunc("numba (1 thread)", func_nb, a, b)
-    res2 = timefunc("numba (%d threads)" % NTHREADS, func_nb_mt, a, b)
+    correct = timefunc(func_np, "numpy (1 thread)", a, b)
+    res1 = timefunc(func_nb, "numba (1 thread)", a, b)
+    res2 = timefunc(func_nb_mt, "numba (%d threads)" % NTHREADS, a, b)
 
     assert np.allclose(res1, correct), (res1, correct)
     assert np.allclose(res2, correct), (res2, correct)
