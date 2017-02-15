@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numerical Routines &mdash; Numerical Routines in Python 0.1 documentation</title>
+  <title>Introduction &mdash; Numerical Routines in Python 0.1 documentation</title>
   
 
   
@@ -34,7 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Numerical Routines in Python 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="Numerical Routines in Python" href="readme.html"/> 
+        <link rel="prev" title="Numerical Routines in Python Using Numba and Numpy" href="readme.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -83,9 +83,15 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Numerical Routines in Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Numerical Routines</a></li>
+                <p class="caption"><span class="caption-text">Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Numerical Routines in Python Using Numba and Numpy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-package.nogil">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-package.jitclass">Jitclass and Custom Numpy Dtype</a></li>
 </ul>
 
             
@@ -116,7 +122,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Numerical Routines</li>
+    <li>Introduction</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -131,18 +137,33 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-package">
-<span id="numerical-routines"></span><h1>Numerical Routines<a class="headerlink" href="#module-package" title="Permalink to this headline">¶</a></h1>
+<span id="introduction"></span><h1>Introduction<a class="headerlink" href="#module-package" title="Permalink to this headline">¶</a></h1>
 <p>Numerical routines written using <code class="docutils literal"><span class="pre">Numpy</span></code> and <code class="docutils literal"><span class="pre">Numba</span></code>.</p>
-<p>These examples are effected by my own experiences using numba and numpy as well
-as examples in Numba repository <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>These examples are refined from or greatly influenced by the examples found from
+github <a class="footnote-reference" href="#id4" id="id1">[1]</a>, <a class="footnote-reference" href="#id5" id="id2">[2]</a>, <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
 <p class="rubric">References</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://github.com/numba/numba/tree/master/examples">https://github.com/numba/numba/tree/master/examples</a></td></tr>
 </tbody>
 </table>
-<span class="target" id="module-package.nogil"></span><p>Example of multithreaded routine using <code class="docutils literal"><span class="pre">nogil=True</span></code>.</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://github.com/barbagroup/numba_tutorial_scipy2016">https://github.com/barbagroup/numba_tutorial_scipy2016</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://github.com/ContinuumIO/numbapro-examples">https://github.com/ContinuumIO/numbapro-examples</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-package.nogil">
+<span id="multithreading"></span><h1>Multithreading<a class="headerlink" href="#module-package.nogil" title="Permalink to this headline">¶</a></h1>
+<p>Example of multithreaded routine using <code class="docutils literal"><span class="pre">nogil=True</span></code>.</p>
 <p>Test function in these examples is</p>
 <div class="math">
 \[f(a, b) = \exp(2.1 a + 3.2 b)\]</div>
@@ -155,8 +176,8 @@ as examples in Numba repository <a class="footnote-reference" href="#id2" id="id
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> (<em>float|np.ndarray</em>) &#8211; <span class="math">\(a\)</span></li>
-<li><strong>b</strong> (<em>float|np.ndarray</em>) &#8211; <span class="math">\(b\)</span></li>
+<li><strong>a</strong> (<em>float|np.ndarray</em>) &#8211; Real number(s) <span class="math">\(a\)</span></li>
+<li><strong>b</strong> (<em>float|np.ndarray</em>) &#8211; Real number(s) <span class="math">\(b\)</span></li>
 </ul>
 </td>
 </tr>
@@ -181,8 +202,8 @@ as examples in Numba repository <a class="footnote-reference" href="#id2" id="id
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>result</strong> (<em>np.ndarray</em>) &#8211; Result array where the results from function <span class="math">\(f(a, b)\)</span> are
 stored.</li>
-<li><strong>a</strong> (<em>np.ndarray</em>) &#8211; <span class="math">\(a\)</span></li>
-<li><strong>b</strong> (<em>np.ndarray</em>) &#8211; <span class="math">\(b\)</span></li>
+<li><strong>a</strong> (<em>np.ndarray</em>) &#8211; Real numbers <span class="math">\(a\)</span></li>
+<li><strong>b</strong> (<em>np.ndarray</em>) &#8211; Real numbers <span class="math">\(b\)</span></li>
 </ul>
 </td>
 </tr>
@@ -200,12 +221,12 @@ arguments into equal-sized chunks.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>inner_func</strong> &#8211; </li>
-<li><strong>numthreads</strong> (<em>int</em>) &#8211; </li>
+<li><strong>inner_func</strong> &#8211; Function to be run.</li>
+<li><strong>numthreads</strong> (<em>int</em>) &#8211; Number of threads.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Wrapped function</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object</p>
@@ -223,14 +244,105 @@ arguments into equal-sized chunks.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>inner_func</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>inner_func</strong> &#8211; Function to be run.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Wrapped function</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-package.jitclass">
+<span id="jitclass-and-custom-numpy-dtype"></span><h1>Jitclass and Custom Numpy Dtype<a class="headerlink" href="#module-package.jitclass" title="Permalink to this headline">¶</a></h1>
+<p>Structured data with Jitclass and Numpy custom dtypes</p>
+<p>This example implements particle in 3D space as both, numpy custom dtype, and
+jitclass.</p>
+<dl class="attribute">
+<dt id="package.jitclass.particle_type">
+<code class="descclassname">package.jitclass.</code><code class="descname">particle_type</code><a class="headerlink" href="#package.jitclass.particle_type" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy.dtype</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="package.jitclass.create_particles_jitclass">
+<code class="descclassname">package.jitclass.</code><code class="descname">create_particles_jitclass</code><a class="reference internal" href="_modules/package/jitclass.html#create_particles_jitclass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.create_particles_jitclass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create random particles</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seed</strong> (<em>int</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="package.jitclass.create_particles_numpy">
+<code class="descclassname">package.jitclass.</code><code class="descname">create_particles_numpy</code><a class="reference internal" href="_modules/package/jitclass.html#create_particles_numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.create_particles_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create size number of random particles</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<em>int</em>) &#8211; Number of particles</li>
+<li><strong>seed</strong> (<em>int</em>) &#8211; Seed for numpy random generator</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="package.jitclass.distance">
+<code class="descclassname">package.jitclass.</code><code class="descname">distance</code><a class="reference internal" href="_modules/package/jitclass.html#distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Euclidean distance between two points.</p>
+<div class="math">
+\[\sqrt{(\Delta x^{2} + \Delta y^{2} + \Delta z^{2})}\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dx</strong> (<em>float</em>) &#8211; </li>
+<li><strong>dy</strong> (<em>float</em>) &#8211; </li>
+<li><strong>dz</strong> (<em>float</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="package.jitclass.potential">
+<code class="descclassname">package.jitclass.</code><code class="descname">potential</code><a class="reference internal" href="_modules/package/jitclass.html#potential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.potential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the potential at each particle using direct summation method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>particles</strong> (<em>Iterable</em><em>[</em><em>point_type</em><em>]</em><em>|Particles</em>) &#8211; The list of particles</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="package.jitclass.reset_potential">
+<code class="descclassname">package.jitclass.</code><code class="descname">reset_potential</code><a class="reference internal" href="_modules/package/jitclass.html#reset_potential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.reset_potential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set all potential values to zero.</p>
 </dd></dl>
 
 </div>
@@ -243,7 +355,7 @@ arguments into equal-sized chunks.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="readme.html" class="btn btn-neutral" title="Numerical Routines in Python" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="readme.html" class="btn btn-neutral" title="Numerical Routines in Python Using Numba and Numpy" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -253,7 +365,7 @@ arguments into equal-sized chunks.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017,Jaan Tollander de Balsch.
-      Last updated on 2017-02-14.
+      Last updated on 2017-02-15.
 
     </p>
   </div>

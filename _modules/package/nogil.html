@@ -83,9 +83,15 @@
           
             
             
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Numerical Routines in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module.html">Numerical Routines</a></li>
+                <p class="caption"><span class="caption-text">Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Numerical Routines in Python Using Numba and Numpy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module.html#module-package.nogil">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module.html#module-package.jitclass">Jitclass and Custom Numpy Dtype</a></li>
 </ul>
 
             
@@ -152,8 +158,10 @@
     <span class="sd">r&quot;&quot;&quot;Control function using Numpy.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        a (float|np.ndarray): :math:`a`</span>
-<span class="sd">        b (float|np.ndarray): :math:`b`</span>
+<span class="sd">        a (float|np.ndarray):</span>
+<span class="sd">            Real number(s) :math:`a`</span>
+<span class="sd">        b (float|np.ndarray):</span>
+<span class="sd">            Real number(s) :math:`b`</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        float|np.ndarray: :math:`f(a, b)`</span>
@@ -169,21 +177,25 @@
 <span class="sd">        result (np.ndarray):</span>
 <span class="sd">            Result array where the results from function :math:`f(a, b)` are</span>
 <span class="sd">            stored.</span>
-<span class="sd">        a (np.ndarray): :math:`a`</span>
-<span class="sd">        b (np.ndarray): :math:`b`</span>
+<span class="sd">        a (np.ndarray):</span>
+<span class="sd">            Real numbers :math:`a`</span>
+<span class="sd">        b (np.ndarray):</span>
+<span class="sd">            Real numbers :math:`b`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)):</span>
         <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">2.1</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">3.2</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="make_singlethread"><a class="viewcode-back" href="../../module.html#package.nogil.make_singlethread">[docs]</a><span class="k">def</span> <span class="nf">make_singlethread</span><span class="p">(</span><span class="n">inner_func</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run the given function inside a single thread.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run the given function inside a single thread.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        inner_func:</span>
+<span class="sd">            Function to be run.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        object:</span>
+<span class="sd">        object: Wrapped function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
@@ -202,10 +214,13 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        inner_func:</span>
+<span class="sd">            Function to be run.</span>
+
 <span class="sd">        numthreads (int):</span>
+<span class="sd">            Number of threads.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        object:</span>
+<span class="sd">        object: Wrapped function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">func_mt</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
@@ -238,7 +253,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017,Jaan Tollander de Balsch.
-      Last updated on 2017-02-14.
+      Last updated on 2017-02-15.
 
     </p>
   </div>

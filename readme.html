@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numerical Routines in Python &mdash; Numerical Routines in Python 0.1 documentation</title>
+  <title>Numerical Routines in Python Using Numba and Numpy &mdash; Numerical Routines in Python 0.1 documentation</title>
   
 
   
@@ -34,8 +34,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Numerical Routines in Python 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Numerical Routines" href="module.html"/>
-        <link rel="prev" title="&lt;no title&gt;" href="index.html"/> 
+        <link rel="next" title="Introduction" href="module.html"/>
+        <link rel="prev" title="Numerical Routines in Python using Numpy and Numba" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,13 +84,20 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Numerical Routines in Python</a><ul>
+                <p class="caption"><span class="caption-text">Basics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Numerical Routines in Python Using Numba and Numpy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#docs">Docs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="module.html">Numerical Routines</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html#module-package.nogil">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html#module-package.jitclass">Jitclass and Custom Numpy Dtype</a></li>
 </ul>
 
             
@@ -121,7 +128,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Numerical Routines in Python</li>
+    <li>Numerical Routines in Python Using Numba and Numpy</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -135,8 +142,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="numerical-routines-in-python">
-<h1>Numerical Routines in Python<a class="headerlink" href="#numerical-routines-in-python" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="numerical-routines-in-python-using-numba-and-numpy">
+<h1>Numerical Routines in Python Using Numba and Numpy<a class="headerlink" href="#numerical-routines-in-python-using-numba-and-numpy" title="Permalink to this headline">¶</a></h1>
 <p>This guide shows examples on how to</p>
 <ul class="simple">
 <li>Write efficient numerical routines in <code class="docutils literal"><span class="pre">Python</span></code> using <code class="docutils literal"><span class="pre">Numba</span></code> and <code class="docutils literal"><span class="pre">Numpy</span></code></li>
@@ -144,16 +151,32 @@
 <li>Write clean docstring with <a class="reference external" href="http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Google style docstrings</a></li>
 <li>Compile API documentation from docstrings with <code class="docutils literal"><span class="pre">Sphinx</span></code></li>
 </ul>
+<p>Check out the <a class="reference external" href="https://jaantollander.github.io/NumericalPython/">documentation</a></p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>If you do not have anaconda or miniconda installed you can install it using</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">buildscripts</span><span class="o">/</span><span class="n">install_miniconda</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>After installation export <code class="docutils literal"><span class="pre">miniconda3</span></code> to the path using</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>export PATH=~/miniconda3/bin:$PATH
+</pre></div>
+</div>
+<p>and create conda environment to run the code. Replace <code class="docutils literal"><span class="pre">x</span></code> in the script with your desired python version</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="n">python3</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span><span class="n">n</span> <span class="n">name3x</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
-<p>Test uses pytest with hypothesis. From commandline test can be using</p>
+<p>Test are implemented using pytest with hypothesis. Test can be run from the commandline using</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pytest</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="docs">
 <h2>Docs<a class="headerlink" href="#docs" title="Permalink to this headline">¶</a></h2>
-<p>Documentation is compiled using Sphinx. Documentation can be compiled using</p>
+<p>Documentation is can be compiled using Sphinx. From <code class="docutils literal"><span class="pre">docs</span></code> directory run command</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
@@ -167,10 +190,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="module.html" class="btn btn-neutral float-right" title="Numerical Routines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="module.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Numerical Routines in Python using Numpy and Numba" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -180,7 +203,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017,Jaan Tollander de Balsch.
-      Last updated on 2017-02-14.
+      Last updated on 2017-02-15.
 
     </p>
   </div>
