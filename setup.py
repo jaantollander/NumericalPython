@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='Efficient Numerical Routines in Python',
     version='0.1',
-    packages=['package'],
+    packages=['routines'],
     url='https://github.com/jaantollander/NumericalPython',
     license='MIT',
     author='tolland1',
