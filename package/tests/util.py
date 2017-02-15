@@ -65,7 +65,6 @@ def timefunc(correct, msg, func, *args, **kwargs):
     Returns:
         object:
     """
-    print(msg.ljust(20), end=" ")
 
     # Make sure the function is compiled before we start the benchmark
     res = func(*args, **kwargs)
@@ -73,6 +72,7 @@ def timefunc(correct, msg, func, *args, **kwargs):
         assert np.allclose(res, correct), (res, correct)
 
     # Timeit
+    print(msg.ljust(20), end=" ")
     timespan = min(repeat(lambda: func(*args, **kwargs), number=5, repeat=2))
     print(format_time(timespan))
     return res

@@ -130,16 +130,17 @@ def potential(particles):
     """Calculate the potential at each particle using direct summation method.
 
     Arguments:
-        particles (point_type):
+        particles (Iterable[point_type]|Particles):
             The list of particles
 
+    Todo:
+        - Fix Jitclass which is slower due to array access order
     """
     for i in range(particles.size):
         for j in range(i, particles.size):
             dx = particles.x[i] - particles.x[j]
             dy = particles.y[i] - particles.y[j]
             dz = particles.z[i] - particles.z[j]
-
             r = distance(dx, dy, dz)
             if r != 0.0:
                 particles.phi[i] += particles.m[i] / r

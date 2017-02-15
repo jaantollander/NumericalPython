@@ -4,10 +4,12 @@ Attributes:
     SIZE: Number of particles
 """
 import random
+
 import numpy as np
 
 from package.jitclass import Particles, create_particles_numpy, \
     create_particles_jitclass, potential, reset_potential
+from package.tests.util import timefunc
 
 SIZE = int(1000)
 
@@ -38,3 +40,8 @@ def test_structured_data():
 
     reset_potential(particles)
     reset_potential(particles2)
+
+    # Timeit
+    print()
+    timefunc(None, 'Custom numpy.dtype', potential, particles)
+    timefunc(None, 'Jitclass', potential, particles2)
