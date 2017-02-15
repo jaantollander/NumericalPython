@@ -16,6 +16,7 @@ channels:
     - conda-forge
 dependencies:
     - numpy
+    - scipy
     - numba
     - jupyter
     - line_profiler
