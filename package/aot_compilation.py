@@ -3,9 +3,6 @@
 - Exporting module
 - Importing module
 - Installing AOT compiled modules with setup.py
-
-Todo:
-    - Create more interesting test function
 """
 from numba.pycc import CC
 

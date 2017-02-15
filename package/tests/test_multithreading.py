@@ -9,8 +9,8 @@ Attributes:
 """
 import numpy as np
 
-from package.nogil import make_multithread, inner_func_nb, func_np
-from package.nogil import make_singlethread
+from package.multithreading import make_multithread, inner_func_nb, func_np
+from package.multithreading import make_singlethread
 from package.tests.util import timefunc
 
 NTHREADS = 4

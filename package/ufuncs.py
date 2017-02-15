@@ -4,3 +4,6 @@ import numpy as np
 import numba
 
 
+@numba.vectorize()
+def function():
+    pass
