@@ -9,9 +9,9 @@ Attributes:
 """
 import numpy as np
 
-from package.multithreading import make_multithread, inner_func_nb, func_np
-from package.multithreading import make_singlethread
-from package.utils import timefunc
+from routines.multithreading import make_multithread, inner_func_nb, func_np
+from routines.multithreading import make_singlethread
+from routines.utils import timefunc
 
 NTHREADS = 4
 SIZE = int(1e6)

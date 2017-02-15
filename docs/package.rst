@@ -29,3 +29,12 @@ Precompiling Numba Modules
 
 .. automodule:: package.tests.test_aot_compilation
    :members:
+
+
+Ufuncs
+------
+.. automodule:: package.ufuncs
+   :members:
+
+.. automodule:: package.tests.test_ufuncs
+   :members:

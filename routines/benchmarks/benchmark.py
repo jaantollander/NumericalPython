@@ -2,10 +2,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from package.multithreading import make_multithread, inner_func_nb
-from package.multithreading import make_singlethread
-from package.ufuncs import logit_serial, logit_par
-from package.utils import benchmark
+from routines.multithreading import make_multithread, inner_func_nb
+from routines.multithreading import make_singlethread
+from routines.ufuncs import logit_serial, logit_par
+from routines.utils import benchmark
 
 NTHREADS = 4
 

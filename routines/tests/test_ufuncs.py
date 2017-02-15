@@ -1,8 +1,8 @@
 import numpy as np
 from scipy.special import logit
 
-from package.ufuncs import logit_serial, logit_par, matmul
-from package.utils import timefunc
+from routines.ufuncs import logit_serial, logit_par, matmul
+from routines.utils import timefunc
 
 
 SIZE = int(1e5)

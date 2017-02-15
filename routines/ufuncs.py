@@ -11,7 +11,7 @@ from numba import float32, float64
 
 
 def logit(a):
-    """Logit
+    r"""Logit function
 
     .. math::
        f(a) = \log \left(\frac{a}{1-a}\right)

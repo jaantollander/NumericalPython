@@ -7,9 +7,9 @@ import random
 
 import numpy as np
 
-from package.structured_data import Particles, create_particles_numpy, \
+from routines.structured_data import Particles, create_particles_numpy, \
     create_particles_jitclass, potential, reset_potential
-from package.utils import timefunc
+from routines.utils import timefunc
 
 SIZE = int(1000)
 
