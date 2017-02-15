@@ -1,1 +1,1 @@
-"""Examples on how to use CUDA decorators."""
+"""Numba's CUDA capabilities."""

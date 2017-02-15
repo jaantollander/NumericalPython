@@ -11,4 +11,4 @@ Numerical Routines in Python using Numpy and Numba
    :caption: Examples
    :maxdepth: 2
 
-   package
+   routines
