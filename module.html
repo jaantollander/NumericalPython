@@ -90,8 +90,9 @@
 <p class="caption"><span class="caption-text">Examples</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#module-package.nogil">Multithreading</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#module-package.jitclass">Jitclass and Custom Numpy Dtype</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-package.multithreading">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-package.structured_data">Structured Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-package.aot_compilation">Precompiling Numba Modules</a></li>
 </ul>
 
             
@@ -161,15 +162,15 @@ github <a class="footnote-reference" href="#id4" id="id1">[1]</a>, <a class="foo
 </tbody>
 </table>
 </div>
-<div class="section" id="module-package.nogil">
-<span id="multithreading"></span><h1>Multithreading<a class="headerlink" href="#module-package.nogil" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-package.multithreading">
+<span id="multithreading"></span><h1>Multithreading<a class="headerlink" href="#module-package.multithreading" title="Permalink to this headline">¶</a></h1>
 <p>Example of multithreaded routine using <code class="docutils literal"><span class="pre">nogil=True</span></code>.</p>
 <p>Test function in these examples is</p>
 <div class="math">
 \[f(a, b) = \exp(2.1 a + 3.2 b)\]</div>
 <dl class="function">
-<dt id="package.nogil.func_np">
-<code class="descclassname">package.nogil.</code><code class="descname">func_np</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/nogil.html#func_np"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.func_np" title="Permalink to this definition">¶</a></dt>
+<dt id="package.multithreading.func_np">
+<code class="descclassname">package.multithreading.</code><code class="descname">func_np</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/multithreading.html#func_np"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.multithreading.func_np" title="Permalink to this definition">¶</a></dt>
 <dd><p>Control function using Numpy.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -192,8 +193,8 @@ github <a class="footnote-reference" href="#id4" id="id1">[1]</a>, <a class="foo
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.nogil.inner_func_nb">
-<code class="descclassname">package.nogil.</code><code class="descname">inner_func_nb</code><a class="reference internal" href="_modules/package/nogil.html#inner_func_nb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.inner_func_nb" title="Permalink to this definition">¶</a></dt>
+<dt id="package.multithreading.inner_func_nb">
+<code class="descclassname">package.multithreading.</code><code class="descname">inner_func_nb</code><a class="reference internal" href="_modules/package/multithreading.html#inner_func_nb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.multithreading.inner_func_nb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function under test.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -212,8 +213,8 @@ stored.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="package.nogil.make_multithread">
-<code class="descclassname">package.nogil.</code><code class="descname">make_multithread</code><span class="sig-paren">(</span><em>inner_func</em>, <em>numthreads</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/nogil.html#make_multithread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.make_multithread" title="Permalink to this definition">¶</a></dt>
+<dt id="package.multithreading.make_multithread">
+<code class="descclassname">package.multithreading.</code><code class="descname">make_multithread</code><span class="sig-paren">(</span><em>inner_func</em>, <em>numthreads</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/multithreading.html#make_multithread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.multithreading.make_multithread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the given function inside <em>numthreads</em> threads, splitting its
 arguments into equal-sized chunks.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -237,8 +238,8 @@ arguments into equal-sized chunks.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="package.nogil.make_singlethread">
-<code class="descclassname">package.nogil.</code><code class="descname">make_singlethread</code><span class="sig-paren">(</span><em>inner_func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/nogil.html#make_singlethread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.nogil.make_singlethread" title="Permalink to this definition">¶</a></dt>
+<dt id="package.multithreading.make_singlethread">
+<code class="descclassname">package.multithreading.</code><code class="descname">make_singlethread</code><span class="sig-paren">(</span><em>inner_func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/multithreading.html#make_singlethread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.multithreading.make_singlethread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the given function inside a single thread.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -254,21 +255,44 @@ arguments into equal-sized chunks.</p>
 </table>
 </dd></dl>
 
-</div>
-<div class="section" id="module-package.jitclass">
-<span id="jitclass-and-custom-numpy-dtype"></span><h1>Jitclass and Custom Numpy Dtype<a class="headerlink" href="#module-package.jitclass" title="Permalink to this headline">¶</a></h1>
-<p>Structured data with Jitclass and Numpy custom dtypes</p>
-<p>This example implements particle in 3D space as both, numpy custom dtype, and
-jitclass.</p>
+<span class="target" id="module-package.tests.test_multithreading"></span><p>Test for numerical routines using pytest and hypothesis.</p>
 <dl class="attribute">
-<dt id="package.jitclass.particle_type">
-<code class="descclassname">package.jitclass.</code><code class="descname">particle_type</code><a class="headerlink" href="#package.jitclass.particle_type" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>numpy.dtype</em></p>
+<dt id="package.tests.test_multithreading.NTHREADS">
+<code class="descclassname">package.tests.test_multithreading.</code><code class="descname">NTHREADS</code><a class="headerlink" href="#package.tests.test_multithreading.NTHREADS" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; Number of threads to use.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.jitclass.create_particles_jitclass">
-<code class="descclassname">package.jitclass.</code><code class="descname">create_particles_jitclass</code><a class="reference internal" href="_modules/package/jitclass.html#create_particles_jitclass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.create_particles_jitclass" title="Permalink to this definition">¶</a></dt>
+<dt id="package.tests.test_multithreading.SIZE">
+<code class="descclassname">package.tests.test_multithreading.</code><code class="descname">SIZE</code><a class="headerlink" href="#package.tests.test_multithreading.SIZE" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; Size of the test arrays.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-package.structured_data">
+<span id="structured-data"></span><h1>Structured Data<a class="headerlink" href="#module-package.structured_data" title="Permalink to this headline">¶</a></h1>
+<p>Structured data</p>
+<ul class="simple">
+<li>Numpy custom dtypes</li>
+<li>Jitclass</li>
+</ul>
+<p>This example implements particle in 3D space as both, numpy custom dtype, and
+jitclass.</p>
+<dl class="attribute">
+<dt id="package.structured_data.particle_type">
+<code class="descclassname">package.structured_data.</code><code class="descname">particle_type</code><a class="headerlink" href="#package.structured_data.particle_type" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy.dtype</em></p>
+</dd></dl>
+
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<ul class="last simple">
+<li>Fix Jitclass which is slower due to array access order</li>
+</ul>
+</div>
+<dl class="attribute">
+<dt id="package.structured_data.create_particles_jitclass">
+<code class="descclassname">package.structured_data.</code><code class="descname">create_particles_jitclass</code><a class="reference internal" href="_modules/package/structured_data.html#create_particles_jitclass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.structured_data.create_particles_jitclass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create random particles</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -281,8 +305,8 @@ jitclass.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.jitclass.create_particles_numpy">
-<code class="descclassname">package.jitclass.</code><code class="descname">create_particles_numpy</code><a class="reference internal" href="_modules/package/jitclass.html#create_particles_numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.create_particles_numpy" title="Permalink to this definition">¶</a></dt>
+<dt id="package.structured_data.create_particles_numpy">
+<code class="descclassname">package.structured_data.</code><code class="descname">create_particles_numpy</code><a class="reference internal" href="_modules/package/structured_data.html#create_particles_numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.structured_data.create_particles_numpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create size number of random particles</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -299,8 +323,8 @@ jitclass.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.jitclass.distance">
-<code class="descclassname">package.jitclass.</code><code class="descname">distance</code><a class="reference internal" href="_modules/package/jitclass.html#distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.distance" title="Permalink to this definition">¶</a></dt>
+<dt id="package.structured_data.distance">
+<code class="descclassname">package.structured_data.</code><code class="descname">distance</code><a class="reference internal" href="_modules/package/structured_data.html#distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.structured_data.distance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Euclidean distance between two points.</p>
 <div class="math">
 \[\sqrt{(\Delta x^{2} + \Delta y^{2} + \Delta z^{2})}\]</div>
@@ -326,8 +350,8 @@ jitclass.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.jitclass.potential">
-<code class="descclassname">package.jitclass.</code><code class="descname">potential</code><a class="reference internal" href="_modules/package/jitclass.html#potential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.potential" title="Permalink to this definition">¶</a></dt>
+<dt id="package.structured_data.potential">
+<code class="descclassname">package.structured_data.</code><code class="descname">potential</code><a class="reference internal" href="_modules/package/structured_data.html#potential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.structured_data.potential" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the potential at each particle using direct summation method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -340,11 +364,56 @@ jitclass.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="package.jitclass.reset_potential">
-<code class="descclassname">package.jitclass.</code><code class="descname">reset_potential</code><a class="reference internal" href="_modules/package/jitclass.html#reset_potential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.jitclass.reset_potential" title="Permalink to this definition">¶</a></dt>
+<dt id="package.structured_data.reset_potential">
+<code class="descclassname">package.structured_data.</code><code class="descname">reset_potential</code><a class="reference internal" href="_modules/package/structured_data.html#reset_potential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.structured_data.reset_potential" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set all potential values to zero.</p>
 </dd></dl>
 
+<span class="target" id="module-package.tests.test_structured_data"></span><p>Test jitclass and numpy custom dtype examples.</p>
+<dl class="attribute">
+<dt id="package.tests.test_structured_data.SIZE">
+<code class="descclassname">package.tests.test_structured_data.</code><code class="descname">SIZE</code><a class="headerlink" href="#package.tests.test_structured_data.SIZE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of particles</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-package.aot_compilation">
+<span id="precompiling-numba-modules"></span><h1>Precompiling Numba Modules<a class="headerlink" href="#module-package.aot_compilation" title="Permalink to this headline">¶</a></h1>
+<p>Ahead of time (AOT) compilation of Numba functions</p>
+<ul class="simple">
+<li>Exporting module</li>
+<li>Importing module</li>
+<li>Installing AOT compiled modules with setup.py</li>
+</ul>
+<dl class="function">
+<dt id="package.aot_compilation.create_extension">
+<code class="descclassname">package.aot_compilation.</code><code class="descname">create_extension</code><span class="sig-paren">(</span><em>extension_name</em>, <em>exported_name</em>, <em>signature</em>, <em>function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/package/aot_compilation.html#create_extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#package.aot_compilation.create_extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Numba pre-compiled module from a function.</p>
+<p>This function is simply an encapsulation of the process of creating
+extensions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>extension_name</strong> (<em>str</em>) &#8211; </li>
+<li><strong>exported_name</strong> (<em>str</em><em>, </em><em>iterable</em>) &#8211; </li>
+<li><strong>signature</strong> (<em>str</em><em>, </em><em>iterable</em>) &#8211; </li>
+<li><strong>function</strong> (<em>str</em><em>, </em><em>iterable</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-package.tests.test_aot_compilation"></span><p>Tests for testing ahead-of-time complilation.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<ul class="last simple">
+<li>More test functions</li>
+</ul>
+</div>
 </div>
 
 
