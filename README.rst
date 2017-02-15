@@ -19,7 +19,7 @@ If you do not have anaconda or miniconda installed you can install it using
 
 ::
 
-   ./buildscripts/install_miniconda.sh
+   ./install_miniconda.sh
 
 After installation export ``miniconda3`` to the path using
 
