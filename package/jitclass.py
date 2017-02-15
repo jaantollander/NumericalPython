@@ -1,4 +1,4 @@
-"""Jitclass and Numpy custom dtype examples
+"""Structured data with Jitclass and Numpy custom dtypes
 
 This example implements particle in 3D space as both, numpy custom dtype, and
 jitclass.
@@ -107,6 +107,11 @@ def create_particles_jitclass(particles, seed=None):
 # Interaction potential
 # ---------------------
 
+@numba.jit(nopython=True)
+def reset_potential(particles):
+    """Set all potential values to zero."""
+    particles.phi[:] = 0.0
+
 
 @numba.jit(nopython=True, nogil=True)
 def distance(point1, point2):
@@ -135,5 +140,5 @@ def direct_sum(particles):
     """
     for i, target in enumerate(particles):
         for source in (particles[:i] + particles[i + 1:]):
-            r = target.distance(source)
+            r = distance(target, source)
             target.phi += source.m / r

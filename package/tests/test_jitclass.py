@@ -12,7 +12,7 @@ from package.jitclass import Particles, create_particles_numpy, \
 SIZE = int(1000)
 
 
-def test_create_particles():
+def test_structured_data():
     # Random seed so that both particle create function create same values.
     seed = random.randint(0, 100)
 
@@ -29,6 +29,5 @@ def test_create_particles():
     assert np.allclose(particles['z'], particles2.z)
     assert np.allclose(particles['m'], particles2.m)
 
-
-def test_potential():
-    pass
+    # Assert that computed potentials are equal
+    assert np.allclose(particles['phi'], particles2.phi)
