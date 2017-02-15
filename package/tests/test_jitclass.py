@@ -7,7 +7,7 @@ import random
 import numpy as np
 
 from package.jitclass import Particles, create_particles_numpy, \
-    create_particles_jitclass
+    create_particles_jitclass, potential, reset_potential
 
 SIZE = int(1000)
 
@@ -29,5 +29,12 @@ def test_structured_data():
     assert np.allclose(particles['z'], particles2.z)
     assert np.allclose(particles['m'], particles2.m)
 
+    # Compute potentials
+    potential(particles)
+    potential(particles2)
+
     # Assert that computed potentials are equal
     assert np.allclose(particles['phi'], particles2.phi)
+
+    reset_potential(particles)
+    reset_potential(particles2)

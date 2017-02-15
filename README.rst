@@ -1,5 +1,5 @@
-Numerical Routines in Python
-============================
+Numerical Routines in Python Using Numba and Numpy
+==================================================
 This guide shows examples on how to
 
 - Write efficient numerical routines in ``Python`` using ``Numba`` and ``Numpy``

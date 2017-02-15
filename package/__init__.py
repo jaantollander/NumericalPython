@@ -1,7 +1,7 @@
 """Numerical routines written using ``Numpy`` and ``Numba``.
 
-These examples are effected by my own experiences using numba and numpy as well
-as examples in Numba repository [#]_.
+These examples are refined from or greatly influenced by the examples found from
+github [#]_, [#]_, [#]_.
 
 References:
     .. [#] https://github.com/numba/numba/tree/master/examples

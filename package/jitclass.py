@@ -107,30 +107,26 @@ def create_particles_jitclass(particles, seed=None):
 # Interaction potential
 # ---------------------
 
-@numba.jit(nopython=True)
-def reset_potential(particles):
-    """Set all potential values to zero."""
-    particles.phi[:] = 0.0
-
-
 @numba.jit(nopython=True, nogil=True)
-def distance(point1, point2):
-    """Euclidean distance between two points.
+def distance(dx, dy, dz):
+    r"""Euclidean distance between two points.
+
+    .. math::
+        \sqrt{(\Delta x^{2} + \Delta y^{2} + \Delta z^{2})}
 
     Args:
-        point1 (point_type):
-        point2 (point_type):
+        dx (float):
+        dy (float):
+        dz (float):
 
     Returns:
         float:
     """
-    return ((point1.x - point2.x) ** 2 +
-            (point1.y - point2.y) ** 2 +
-            (point1.z - point2.z) ** 2) ** 0.5
+    return (dx ** 2 + dy ** 2 + dz ** 2) ** 0.5
 
 
 @numba.jit(nopython=True, nogil=True)
-def direct_sum(particles):
+def potential(particles):
     """Calculate the potential at each particle using direct summation method.
 
     Arguments:
@@ -138,7 +134,19 @@ def direct_sum(particles):
             The list of particles
 
     """
-    for i, target in enumerate(particles):
-        for source in (particles[:i] + particles[i + 1:]):
-            r = distance(target, source)
-            target.phi += source.m / r
+    for i in range(particles.size):
+        for j in range(i, particles.size):
+            dx = particles.x[i] - particles.x[j]
+            dy = particles.y[i] - particles.y[j]
+            dz = particles.z[i] - particles.z[j]
+
+            r = distance(dx, dy, dz)
+            if r != 0.0:
+                particles.phi[i] += particles.m[i] / r
+                particles.phi[j] += particles.m[j] / r
+
+
+@numba.jit(nopython=True)
+def reset_potential(particles):
+    """Set all potential values to zero."""
+    particles.phi[:] = 0.0
