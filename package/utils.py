@@ -80,12 +80,14 @@ def benchmark(func, arg_gen, num=500, seed=None):
 
     Args:
         func:
+            Function to benchmark
+
         arg_gen:
-        num:
-        seed:
+        num (int):
+        seed (int, optional):
 
     Returns:
-        object:
+        (ndarray, ndarray):
 
     Todo:
         - float32, float64
