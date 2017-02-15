@@ -3,20 +3,26 @@
 Attributes:
     SIZE: Number of particles
 """
-import numpy as np
+import random
 
-from package.jitclass import Particles, create_particles
+from package.jitclass import Particles, create_particles_numpy, \
+    create_particles_jitclass
 
 SIZE = int(1000)
 
 
-def test_custom_dtype():
-    particles = create_particles(SIZE)
-    assert True
+def test_():
+    # Random seed so that both particle create function create same values.
+    seed = random.randint()
 
+    # Custom Numpy dtype
+    particles = create_particles_numpy(SIZE, seed)
 
-def test_jitclass():
-    particles = Particles(SIZE)
+    # Jitclass
+    particles2 = Particles(SIZE)
+    create_particles_jitclass(particles2, seed)
+
+    # Test that all created values are the same
     assert True
 
 

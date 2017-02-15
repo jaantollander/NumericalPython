@@ -8,6 +8,7 @@ Attributes:
 """
 import numpy as np
 import numba
+from numba.types import optional, int64, float64
 
 # --------------------------------------
 # Numpy custom dtype version of 3D point
@@ -19,22 +20,28 @@ particle_type = np.dtype({
 })
 
 
-@numba.jit(nopython=True)
-def create_particles(size):
-    """Create size number of particles
+@numba.jit(nopython=True, locals={'seed': optional(int64)})
+def create_particles_numpy(size, seed=None):
+    """Create size number of random particles
 
     Args:
-        size (int): Number of particles
+        size (int):
+            Number of particles
+
+        seed (int):
+            Seed for numpy random generator
 
     """
-    particles = np.empty(size, dtype=particle_type)
+    if seed is not None:
+        np.random.seed(seed)
 
-    for i in range(size):
-        particles[i].x = np.random.uniform(-1.0, 1.0)
-        particles[i].y = np.random.uniform(-1.0, 1.0)
-        particles[i].z = np.random.uniform(-1.0, 1.0)
-        particles[i].m = np.random.uniform(0.0, 1.0)
-        particles[i].phi = 0.0
+    particles = np.empty(size, dtype=particle_type)
+    for particle in particles:
+        particle.x = np.random.uniform(-1.0, 1.0)
+        particle.y = np.random.uniform(-1.0, 1.0)
+        particle.z = np.random.uniform(-1.0, 1.0)
+        particle.m = np.random.uniform(0.0, 1.0)
+        particle.phi = 0.0
     return particles
 
 
@@ -76,6 +83,24 @@ class Particles(object):
         self.z = np.zeros(self.size)
         self.m = np.zeros(self.size)
         self.phi = np.zeros(self.size)
+
+
+@numba.jit(nopython=True, locals={'seed': optional(int64)})
+def create_particles_jitclass(particles, seed=None):
+    """Create random particles
+
+    Args:
+        seed (int):
+    """
+    if seed is not None:
+        np.random.seed(seed)
+
+    for i in range(particles.size):
+        particles.x[i] = np.random.uniform(-1.0, 1.0)
+        particles.y[i] = np.random.uniform(-1.0, 1.0)
+        particles.z[i] = np.random.uniform(-1.0, 1.0)
+        particles.m[i] = np.random.uniform(0.0, 1.0)
+        particles.phi[i] = 0.0
 
 
 # ---------------------
