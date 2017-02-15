@@ -22,7 +22,7 @@ from numba.types import optional, int64, float64
 
 particle_type = np.dtype({
     'names': ['x', 'y', 'z', 'm', 'phi'],
-    'formats': [np.double, np.double, np.double, np.double, np.double]
+    'formats': [np.float64, np.float64, np.float64, np.float64, np.float64]
 })
 
 
