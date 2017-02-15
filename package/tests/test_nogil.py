@@ -25,6 +25,9 @@ def test_nogil():
     b = np.random.rand(SIZE)
 
     print()
-    correct = timefunc(None, "numpy (1 thread)", func_np, a, b)
-    timefunc(correct, "numba (1 thread)", func_nb, a, b)
-    timefunc(correct, "numba (%d threads)" % NTHREADS, func_nb_mt, a, b)
+    correct = timefunc("numpy (1 thread)", func_np, a, b)
+    res1 = timefunc("numba (1 thread)", func_nb, a, b)
+    res2 = timefunc("numba (%d threads)" % NTHREADS, func_nb_mt, a, b)
+
+    assert np.allclose(res1, correct), (res1, correct)
+    assert np.allclose(res2, correct), (res2, correct)

@@ -1,10 +1,16 @@
-"""Structured data with Jitclass and Numpy custom dtypes
+"""Structured data
+
+- Numpy custom dtypes
+- Jitclass
 
 This example implements particle in 3D space as both, numpy custom dtype, and
 jitclass.
 
 Attributes:
     particle_type (numpy.dtype):
+
+Todo:
+    - Fix Jitclass which is slower due to array access order
 """
 import numpy as np
 import numba
@@ -133,8 +139,6 @@ def potential(particles):
         particles (Iterable[point_type]|Particles):
             The list of particles
 
-    Todo:
-        - Fix Jitclass which is slower due to array access order
     """
     for i in range(particles.size):
         for j in range(i, particles.size):

@@ -57,7 +57,7 @@ language = 'en'
 today_fmt = '%Y-%m-%d'
 
 pygments_style = 'sphinx'
-todo_include_todos = False
+todo_include_todos = True
 
 # -- Graphviz --------------------------------------------------------
 

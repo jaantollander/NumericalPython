@@ -2,8 +2,6 @@ import math
 import sys
 from timeit import repeat
 
-import numpy as np
-
 
 def format_time(timespan, precision=3):
     """Formats the timespan in a human readable form
@@ -52,11 +50,10 @@ def format_time(timespan, precision=3):
     return u"{:.1f} {}".format(timespan * scaling[order], units[order])
 
 
-def timefunc(correct, msg, func, *args, **kwargs):
+def timefunc(msg, func, *args, **kwargs):
     """Benchmark *func* and print out its runtime.
 
     Args:
-        correct:
         msg:
         func:
         *args:
@@ -68,8 +65,6 @@ def timefunc(correct, msg, func, *args, **kwargs):
 
     # Make sure the function is compiled before we start the benchmark
     res = func(*args, **kwargs)
-    if correct is not None:
-        assert np.allclose(res, correct), (res, correct)
 
     # Timeit
     print(msg.ljust(20), end=" ")

@@ -7,7 +7,7 @@ import random
 
 import numpy as np
 
-from package.jitclass import Particles, create_particles_numpy, \
+from package.structured_data import Particles, create_particles_numpy, \
     create_particles_jitclass, potential, reset_potential
 from package.tests.util import timefunc
 
@@ -43,5 +43,5 @@ def test_structured_data():
 
     # Timeit
     print()
-    timefunc(None, 'Custom numpy.dtype', potential, particles)
-    timefunc(None, 'Jitclass', potential, particles2)
+    timefunc('Custom numpy.dtype', potential, particles)
+    timefunc('Jitclass', potential, particles2)

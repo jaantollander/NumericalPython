@@ -10,7 +10,7 @@ Multithreading
    :members:
 
 
-Jitclass and Custom Numpy Dtype
--------------------------------
-.. automodule:: package.jitclass
+Structured Data
+---------------
+.. automodule:: package.structured_data
    :members:
