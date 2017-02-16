@@ -1,10 +1,10 @@
 """Benchmarks of the functions"""
 import matplotlib.pyplot as plt
 import numpy as np
-
 from routines.multithreading import make_multithread, inner_func_nb
 from routines.multithreading import make_singlethread
-from routines.ufuncs import logit_serial, logit_par
+
+from routines.examples.ufuncs import logit_serial, logit_par
 from routines.utils import benchmark
 
 NTHREADS = 4

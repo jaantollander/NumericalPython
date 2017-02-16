@@ -3,7 +3,7 @@
 Todo:
     - More test functions
 """
-from routines.aot_compilation import create_extension
+from routines.examples.aot_compilation import create_extension
 
 
 def test_aot_compilation():
@@ -13,5 +13,5 @@ def test_aot_compilation():
     create_extension('numba_ext', 'func', 'boolean()', f)
 
     # We can now import the extension and run it
-    from routines.numba_ext import func
+    from routines.examples.numba_ext import func
     assert func()

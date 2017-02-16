@@ -7,7 +7,7 @@ import random
 
 import numpy as np
 
-from routines.structured_data import Particles, create_particles_numpy, \
+from routines.examples.structured_data import Particles, create_particles_numpy, \
     create_particles_jitclass, potential, reset_potential
 from routines.utils import timefunc
 

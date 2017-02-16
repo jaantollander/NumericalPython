@@ -9,8 +9,8 @@ Attributes:
 """
 import numpy as np
 
-from routines.multithreading import make_multithread, inner_func_nb, func_np
-from routines.multithreading import make_singlethread
+from routines.examples.multithreading import make_multithread, inner_func_nb, func_np
+from routines.examples.multithreading import make_singlethread
 from routines.utils import timefunc
 
 NTHREADS = 4
