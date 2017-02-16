@@ -1,12 +1,4 @@
-"""Test for numerical routines using pytest and hypothesis.
-
-Args:
-    size:
-        Size of the test arrays.
-
-    nthreads (int):
-        Number of threads to use.
-"""
+"""Test for numerical routines using pytest and hypothesis."""
 import numpy as np
 import pytest
 
@@ -35,20 +27,26 @@ def func_nb():
 
 @pytest.fixture()
 def func_nb_mt(nthreads=4):
+    """Multithreaded function
+
+    nthreads (int):
+        Number of threads to use.
+    """
     return make_multithread(inner_func_nb, nthreads)
 
 
 def test_func_np(benchmark, args):
-    benchmark(func_np, *args)
+    res = benchmark(func_np, *args)
+    assert np.allclose(res, correct)
 
 
 def test_func_nb(benchmark, correct, func_nb, args):
-    func_nb(*args)
+    func_nb(*args)  # precompile
     res = benchmark(func_nb, *args)
     assert np.allclose(res, correct)
 
 
 def test_func_nb_mt(benchmark, correct, func_nb_mt, args):
-    func_nb_mt(*args)
+    func_nb_mt(*args)  # precompile
     res = benchmark(func_nb_mt, *args)
     assert np.allclose(res, correct)

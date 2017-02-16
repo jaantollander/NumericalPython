@@ -1,6 +1,7 @@
 ## Project
 .idea/
 python-nufft/
+*.benchmarks
 
 
 # Created by .ignore support plugin (hsz.mobi)

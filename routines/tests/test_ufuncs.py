@@ -1,20 +1,36 @@
 import numpy as np
+import pytest
 from scipy.special import logit
 
 from routines.examples.ufuncs import logit_serial, logit_par, matmul
 from routines.utils import timefunc
 
 
-def test_ufunc(size=int(1e5)):
-    a = np.random.random_sample(size)
+@pytest.fixture(scope='module')
+def args(size=int(1e5)):
+    return np.random.random_sample(size),
 
-    print()
-    correct = timefunc(logit, 'Scipy', a)
-    res1 = timefunc(logit_serial, 'Serial', a)
-    res2 = timefunc(logit_par, 'Parallel', a)
 
-    assert np.allclose(res1, correct)
-    assert np.allclose(res2, correct)
+@pytest.fixture(scope='module')
+def correct(args):
+    return logit(*args)
+
+
+def test_logit(benchmark, correct, args):
+    res = benchmark(logit, *args)
+    assert np.allclose(res, correct)
+
+
+def test_logit_serial(benchmark, correct, args):
+    logit_serial(*args)
+    res = benchmark(logit_serial, *args)
+    assert np.allclose(res, correct)
+
+
+def test_logit_par(benchmark, correct, args):
+    logit_par(*args)
+    res = benchmark(logit_par, *args)
+    assert np.allclose(res, correct)
 
 
 def test_gufunc(size=500):
