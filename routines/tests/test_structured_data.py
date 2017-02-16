@@ -1,47 +1,49 @@
-"""Test jitclass and numpy custom dtype examples.
-
-Attributes:
-    SIZE: Number of particles
-"""
+"""Test jitclass and numpy custom dtype examples."""
 import random
 
 import numpy as np
+import pytest
 
 from routines.examples.structured_data import Particles, create_random_particles_numpy, \
     create_random_particles_jitclass, potential, reset_potential
-from routines.utils import timefunc
-
-SIZE = int(1000)
 
 
-def test_structured_data():
-    # Random seed so that both particle create function create same values.
-    seed = random.randint(0, 100)
+SEED = random.randint(0, 100)
+SIZE = 1000
 
-    # Custom Numpy dtype
-    particles = create_random_particles_numpy(SIZE, seed)
 
-    # Jitclass
-    particles2 = Particles(SIZE)
+@pytest.fixture(scope='module')
+def particles_custom_dtype(size=SIZE, seed=SEED):
+    return create_random_particles_numpy(size, seed)
+
+
+@pytest.fixture(scope='module')
+def particles_jitclass(size=SIZE, seed=SEED):
+    particles2 = Particles(size)
     create_random_particles_jitclass(particles2, seed)
+    return particles2
 
-    # Test that all created values are the same
-    assert np.allclose(particles['x'], particles2.x)
-    assert np.allclose(particles['y'], particles2.y)
-    assert np.allclose(particles['z'], particles2.z)
-    assert np.allclose(particles['m'], particles2.m)
 
-    # Compute potentials
-    potential(particles)
-    potential(particles2)
+def test_compare_data(particles_custom_dtype, particles_jitclass):
+    """Validates that both structures create same output."""
+    potential(particles_custom_dtype)
+    potential(particles_jitclass)
 
-    # Assert that computed potentials are equal
-    assert np.allclose(particles['phi'], particles2.phi)
+    assert np.allclose(particles_custom_dtype['x'], particles_jitclass.x)
+    assert np.allclose(particles_custom_dtype['y'], particles_jitclass.y)
+    assert np.allclose(particles_custom_dtype['z'], particles_jitclass.z)
+    assert np.allclose(particles_custom_dtype['m'], particles_jitclass.m)
+    assert np.allclose(particles_custom_dtype['phi'], particles_jitclass.phi)
 
-    reset_potential(particles)
-    reset_potential(particles2)
+    reset_potential(particles_custom_dtype)
+    reset_potential(particles_jitclass)
 
-    # Timeit
-    print()
-    timefunc(potential, 'Custom numpy.dtype', particles)
-    timefunc(potential, 'Jitclass', particles2)
+
+def test_custom_dtype(benchmark, particles_custom_dtype):
+    potential(particles_custom_dtype)
+    benchmark(potential, particles_custom_dtype)
+
+
+def test_jitclass(benchmark, particles_jitclass):
+    potential(particles_jitclass)
+    benchmark(potential, particles_jitclass)
