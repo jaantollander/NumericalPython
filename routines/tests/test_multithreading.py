@@ -1,33 +1,54 @@
 """Test for numerical routines using pytest and hypothesis.
 
-Attributes:
-    NTHREADS (int):
-        Number of threads to use.
-
-    SIZE (int):
+Args:
+    size:
         Size of the test arrays.
+
+    nthreads (int):
+        Number of threads to use.
 """
 import numpy as np
+import pytest
 
 from routines.examples.multithreading import make_multithread, inner_func_nb, func_np
 from routines.examples.multithreading import make_singlethread
-from routines.utils import timefunc
-
-NTHREADS = 4
-SIZE = int(1e6)
 
 
-def test_nogil():
-    func_nb = make_singlethread(inner_func_nb)
-    func_nb_mt = make_multithread(inner_func_nb, NTHREADS)
+@pytest.fixture(scope='module')
+def args(size=int(1e6)):
+    """Arguments for the functions that are tested. Scope is set to module
+    so that all functions are tested with same arguments."""
+    a = np.random.rand(size)
+    b = np.random.rand(size)
+    return a, b
 
-    a = np.random.rand(SIZE)
-    b = np.random.rand(SIZE)
 
-    print()
-    correct = timefunc(func_np, "numpy (1 thread)", a, b)
-    res1 = timefunc(func_nb, "numba (1 thread)", a, b)
-    res2 = timefunc(func_nb_mt, "numba (%d threads)" % NTHREADS, a, b)
+@pytest.fixture(scope='module')
+def correct(args):
+    return func_np(*args)
 
-    assert np.allclose(res1, correct), (res1, correct)
-    assert np.allclose(res2, correct), (res2, correct)
+
+@pytest.fixture()
+def func_nb():
+    return make_singlethread(inner_func_nb)
+
+
+@pytest.fixture()
+def func_nb_mt(nthreads=4):
+    return make_multithread(inner_func_nb, nthreads)
+
+
+def test_func_np(benchmark, args):
+    benchmark(func_np, *args)
+
+
+def test_func_nb(benchmark, correct, func_nb, args):
+    func_nb(*args)
+    res = benchmark(func_nb, *args)
+    assert np.allclose(res, correct)
+
+
+def test_func_nb_mt(benchmark, correct, func_nb_mt, args):
+    func_nb_mt(*args)
+    res = benchmark(func_nb_mt, *args)
+    assert np.allclose(res, correct)

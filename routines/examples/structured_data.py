@@ -27,7 +27,7 @@ particle_type = np.dtype({
 
 
 @numba.jit(nopython=True, locals={'seed': optional(int64)})
-def create_particles_numpy(size, seed=None):
+def create_random_particles_numpy(size, seed=None):
     """Create size number of random particles
 
     Args:
@@ -92,7 +92,7 @@ class Particles(object):
 
 
 @numba.jit(nopython=True, locals={'seed': optional(int64)})
-def create_particles_jitclass(particles, seed=None):
+def create_random_particles_jitclass(particles, seed=None):
     """Create random particles
 
     Args:

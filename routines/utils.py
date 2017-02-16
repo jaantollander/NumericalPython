@@ -1,4 +1,8 @@
-"""Function for testing, profiling and benchmarking numba routines."""
+"""Function for testing, profiling and benchmarking numba routines.
+
+Todo:
+    - Bokeh plot benchmark output
+"""
 import math
 import sys
 from timeit import repeat

@@ -7,8 +7,8 @@ import random
 
 import numpy as np
 
-from routines.examples.structured_data import Particles, create_particles_numpy, \
-    create_particles_jitclass, potential, reset_potential
+from routines.examples.structured_data import Particles, create_random_particles_numpy, \
+    create_random_particles_jitclass, potential, reset_potential
 from routines.utils import timefunc
 
 SIZE = int(1000)
@@ -19,11 +19,11 @@ def test_structured_data():
     seed = random.randint(0, 100)
 
     # Custom Numpy dtype
-    particles = create_particles_numpy(SIZE, seed)
+    particles = create_random_particles_numpy(SIZE, seed)
 
     # Jitclass
     particles2 = Particles(SIZE)
-    create_particles_jitclass(particles2, seed)
+    create_random_particles_jitclass(particles2, seed)
 
     # Test that all created values are the same
     assert np.allclose(particles['x'], particles2.x)

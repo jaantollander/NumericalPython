@@ -4,11 +4,9 @@ from scipy.special import logit
 from routines.examples.ufuncs import logit_serial, logit_par, matmul
 from routines.utils import timefunc
 
-SIZE = int(1e5)
 
-
-def test_ufunc():
-    a = np.random.random_sample(SIZE)
+def test_ufunc(size=int(1e5)):
+    a = np.random.random_sample(size)
 
     print()
     correct = timefunc(logit, 'Scipy', a)
@@ -19,8 +17,8 @@ def test_ufunc():
     assert np.allclose(res2, correct)
 
 
-def test_gufunc():
-    a = np.random.random((500, 500))
+def test_gufunc(size=500):
+    a = np.random.random((size, size))
     res = np.zeros_like(a)
 
     print()

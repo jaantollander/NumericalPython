@@ -28,6 +28,8 @@ dependencies:
       - ghp-import
       - pytest
       - hypothesis
+      - pytest-benchmark
+      - pytest-cov
       - click
       - colorlog
       - colorama
