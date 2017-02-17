@@ -34,6 +34,8 @@ and create conda environment to run the code. Replace ``x`` in the script with y
    conda env create python3.x -n name3x -f environment.yml
 
 
+Alternative to normal CPython one can also use the `Intel distribution for Python <https://software.intel.com/en-us/articles/using-intel-distribution-for-python-with-anaconda>`_.
+
 Tests
 -----
 Test are implemented using pytest with hypothesis. Test can be run from the commandline using
