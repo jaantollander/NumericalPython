@@ -4,9 +4,9 @@ import random
 import numpy as np
 import pytest
 
-from routines.examples.structured_data import Particles, create_random_particles_numpy, \
-    create_random_particles_jitclass, potential, reset_potential
-
+from routines.examples.structures import Particles, create_random_particles_numpy, \
+    create_random_particles_jitclass, potential, reset_potential, potential2, \
+    potential1
 
 SEED = random.randint(0, 100)
 SIZE = 1000
@@ -26,8 +26,8 @@ def particles_jitclass(size=SIZE, seed=SEED):
 
 def test_compare_data(particles_custom_dtype, particles_jitclass):
     """Validates that both structures create same output."""
-    potential(particles_custom_dtype)
-    potential(particles_jitclass)
+    potential1(particles_custom_dtype)
+    potential2(particles_jitclass)
 
     assert np.allclose(particles_custom_dtype['x'], particles_jitclass.x)
     assert np.allclose(particles_custom_dtype['y'], particles_jitclass.y)
@@ -40,10 +40,10 @@ def test_compare_data(particles_custom_dtype, particles_jitclass):
 
 
 def test_custom_dtype(benchmark, particles_custom_dtype):
-    potential(particles_custom_dtype)
-    benchmark(potential, particles_custom_dtype)
+    potential1(particles_custom_dtype)
+    benchmark(potential1, particles_custom_dtype)
 
 
 def test_jitclass(benchmark, particles_jitclass):
-    potential(particles_jitclass)
-    benchmark(potential, particles_jitclass)
+    potential2(particles_jitclass)
+    benchmark(potential2, particles_jitclass)

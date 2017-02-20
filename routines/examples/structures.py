@@ -14,16 +14,19 @@ Todo:
 """
 import numpy as np
 import numba
-from numba.types import optional, int64, float64
+from numba.types import optional, int64, float64, void
 
 # --------------------------------------
 # Numpy custom dtype version of 3D point
 # --------------------------------------
 
-particle_type = np.dtype({
-    'names': ['x', 'y', 'z', 'm', 'phi'],
-    'formats': [np.float64, np.float64, np.float64, np.float64, np.float64]
-})
+particle_type = np.dtype([
+    ('x', np.float64),
+    ('y', np.float64),
+    ('z', np.float64),
+    ('m', np.float64),
+    ('phi', np.float64),
+])
 
 
 @numba.jit(nopython=True, locals={'seed': optional(int64)})
@@ -113,7 +116,7 @@ def create_random_particles_jitclass(particles, seed=None):
 # Interaction potential
 # ---------------------
 
-@numba.jit(nopython=True, nogil=True)
+@numba.jit(float64(float64, float64, float64), nopython=True, nogil=True)
 def distance(dx, dy, dz):
     r"""Euclidean distance between two points.
 
@@ -131,12 +134,11 @@ def distance(dx, dy, dz):
     return (dx ** 2 + dy ** 2 + dz ** 2) ** 0.5
 
 
-@numba.jit(nopython=True, nogil=True)
 def potential(particles):
     """Calculate the potential at each particle using direct summation method.
 
     Arguments:
-        particles (Iterable[point_type]|Particles):
+        particles:
             The list of particles
 
     """
@@ -149,6 +151,17 @@ def potential(particles):
             if r != 0.0:
                 particles.phi[i] += particles.m[i] / r
                 particles.phi[j] += particles.m[j] / r
+
+
+potential1 = numba.jit(void(numba.typeof(particle_type)[:]),
+                       nopython=True, nogil=True)(potential)
+potential2 = numba.jit(void(Particles.class_type.instance_type),
+                       nopython=True, nogil=True)(potential)
+"""
+>>> @numba.jit(void(numba.typeof(particle_type)[:]), nopython=True, nogil=True)
+>>> def potential(particles):
+>>>     ...
+"""
 
 
 @numba.jit(nopython=True)
