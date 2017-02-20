@@ -20,10 +20,14 @@ from numba.types import optional, int64, float64, void
 # Numpy custom dtype version of 3D point
 # --------------------------------------
 
-particle_type = np.dtype([
+point = np.dtype([
     ('x', np.float64),
     ('y', np.float64),
     ('z', np.float64),
+])
+
+particle_type = np.dtype([
+    ('position', point),
     ('m', np.float64),
     ('phi', np.float64),
 ])
@@ -46,9 +50,9 @@ def create_random_particles_numpy(size, seed=None):
 
     particles = np.empty(size, dtype=particle_type)
     for particle in particles:
-        particle.x = np.random.uniform(-1.0, 1.0)
-        particle.y = np.random.uniform(-1.0, 1.0)
-        particle.z = np.random.uniform(-1.0, 1.0)
+        particle.position.x = np.random.uniform(-1.0, 1.0)
+        particle.position.y = np.random.uniform(-1.0, 1.0)
+        particle.position.z = np.random.uniform(-1.0, 1.0)
         particle.m = np.random.uniform(0.0, 1.0)
         particle.phi = 0.0
     return particles
@@ -134,7 +138,28 @@ def distance(dx, dy, dz):
     return (dx ** 2 + dy ** 2 + dz ** 2) ** 0.5
 
 
-def potential(particles):
+@numba.jit(void(numba.typeof(particle_type)[:]), nopython=True, nogil=True)
+def potential1(particles):
+    """Calculate the potential at each particle using direct summation method.
+
+    Arguments:
+        particles:
+            The list of particles
+
+    """
+    for i in range(particles.size):
+        for j in range(i, particles.size):
+            dx = particles.position.x[i] - particles.position.x[j]
+            dy = particles.position.y[i] - particles.position.y[j]
+            dz = particles.position.z[i] - particles.position.z[j]
+            r = distance(dx, dy, dz)
+            if r != 0.0:
+                particles.phi[i] += particles.m[i] / r
+                particles.phi[j] += particles.m[j] / r
+
+
+@numba.jit(void(Particles.class_type.instance_type), nopython=True, nogil=True)
+def potential2(particles):
     """Calculate the potential at each particle using direct summation method.
 
     Arguments:
@@ -151,17 +176,6 @@ def potential(particles):
             if r != 0.0:
                 particles.phi[i] += particles.m[i] / r
                 particles.phi[j] += particles.m[j] / r
-
-
-potential1 = numba.jit(void(numba.typeof(particle_type)[:]),
-                       nopython=True, nogil=True)(potential)
-potential2 = numba.jit(void(Particles.class_type.instance_type),
-                       nopython=True, nogil=True)(potential)
-"""
->>> @numba.jit(void(numba.typeof(particle_type)[:]), nopython=True, nogil=True)
->>> def potential(particles):
->>>     ...
-"""
 
 
 @numba.jit(nopython=True)

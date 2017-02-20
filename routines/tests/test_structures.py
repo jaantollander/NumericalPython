@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 
 from routines.examples.structures import Particles, create_random_particles_numpy, \
-    create_random_particles_jitclass, potential, reset_potential, potential2, \
+    create_random_particles_jitclass, reset_potential, potential2, \
     potential1
 
 SEED = random.randint(0, 100)
@@ -29,9 +29,9 @@ def test_compare_data(particles_custom_dtype, particles_jitclass):
     potential1(particles_custom_dtype)
     potential2(particles_jitclass)
 
-    assert np.allclose(particles_custom_dtype['x'], particles_jitclass.x)
-    assert np.allclose(particles_custom_dtype['y'], particles_jitclass.y)
-    assert np.allclose(particles_custom_dtype['z'], particles_jitclass.z)
+    assert np.allclose(particles_custom_dtype['position']['x'], particles_jitclass.x)
+    assert np.allclose(particles_custom_dtype['position']['y'], particles_jitclass.y)
+    assert np.allclose(particles_custom_dtype['position']['z'], particles_jitclass.z)
     assert np.allclose(particles_custom_dtype['m'], particles_jitclass.m)
     assert np.allclose(particles_custom_dtype['phi'], particles_jitclass.phi)
 
