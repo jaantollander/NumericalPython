@@ -1,14 +1,26 @@
 """Test generated_jit"""
-from routines.examples.generated_jit import distance, create_random_point
+import numpy as np
+
+from routines.examples.generated_jit import distance2D, distance3D, point2D, point3D
 
 
 def test_distance2D():
-    point = create_random_point(2)
-    dist = distance(point)
-    assert isinstance(dist, float)
+    point = np.zeros(10, point2D)
+    dists = distance2D(point)
+    assert isinstance(dists, np.ndarray)
+
+    for i, p in enumerate(point):
+        dist = distance2D(p)
+        assert dists[i] == dist
+        assert isinstance(dist, float)
 
 
 def test_distance3D():
-    point = create_random_point(3)
-    dist = distance(point)
-    assert isinstance(dist, float)
+    point = np.zeros(10, point3D)
+    dists = distance3D(point)
+    assert isinstance(dists, np.ndarray)
+
+    for i, p in enumerate(point):
+        dist = distance3D(p)
+        assert dists[i] == dist
+        assert isinstance(dist, float)
