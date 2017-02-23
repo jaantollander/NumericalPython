@@ -30,7 +30,7 @@ def func_np(a, b):
     return np.exp(2.1 * a + 3.2 * b)
 
 
-@jit('void(double[:], double[:], double[:])', nopython=True, nogil=True)
+@jit('void(float64[:], float64[:], float64[:])', nopython=True, nogil=True)
 def inner_func_nb(result, a, b):
     """Function under test.
 
