@@ -1,7 +1,7 @@
 """Test generated_jit"""
 import numpy as np
 
-from routines.examples.generated_jit import distance2D, distance3D, point2D, point3D
+from routines.examples.generated_jit import distance2D, distance3D, point2D, point3D, distance
 
 
 def test_distance2D():
@@ -24,3 +24,9 @@ def test_distance3D():
         dist = distance3D(p)
         assert dists[i] == dist
         assert isinstance(dist, float)
+
+
+def test_generated_distance():
+    point = np.zeros(10, point2D)
+    distance(point)
+    assert True

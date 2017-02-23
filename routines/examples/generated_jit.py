@@ -32,9 +32,9 @@ def distance3D(point):
 # FIXME
 @numba.generated_jit(nopython=True, nogil=True)
 def distance(point):
-    if isinstance(point, numba.from_dtype(point2D)):
+    if point.dtype is numba.from_dtype(point2D):
         return lambda point: np.sqrt(point.x ** 2 + point.y ** 2)
-    elif isinstance(point, numba.from_dtype(point3D)):
+    elif point.dtype is numba.from_dtype(point3D):
         return lambda point: np.sqrt(point.x ** 2 + point.y ** 2 + point.z ** 2)
     else:
         raise Exception("Invalid argument")
